@@ -1,0 +1,17 @@
+[
+  {
+    "nimi": "Essi Esimerkki",
+    "tehtava": "Toimitusjohtaja",
+    "puhelin": "040 345 6789"
+  },
+  {
+    "nimi": "Teppo Testaaja",
+    "tehtava": "Talousjohtaja",
+    "puhelin": "040 567 899"
+  },
+  {
+    "nimi": "Paula Palkanlaskija",
+    "tehtava": "Palkanlaskija",
+    "puhelin": "040 567 899"
+  }
+]

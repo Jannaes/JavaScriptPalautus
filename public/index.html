@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Palautus</title>
+        <link rel="stylesheet" href="style.css"/>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    </head>
+        <body>
+            <center>
+
+            <h1>Oma Yritys Oy</h1>
+
+            <nav>
+                <button onclick ="näytäPääsivu()">Pääsivu</button>
+                <button onclick="näytäYritys()">Yritysesittely</button>
+                <button onclick="näytäYhteystiedot()">Yhteystiedot</button>
+                <button onclick="näytäHenkilokunta()">Henkilökunta</button>
+            </nav>
+
+            <div id="main_alue"></div>
+
+            </center>
+
+    <!-----------------Navigointi ja funktiot-------->
+    <script>
+
+        const pääsivu = `<h2>Tervetuloa Oma Yritys Oy:n sivuille!</h2>
+                        <p>Oma Yritys Oy on kotimainen perheyritys, joka tarjoaa laadukkaita ja vastuullisesti valmistettuja tuotteita arkeen ja juhlaan.  
+                        Toimimme jo viidettä vuotta ja olemme tunnettuja erinomaisesta asiakaspalvelustamme, sekä siitä, että kuuntelemme asiakkaidemme toiveita.</p>
+                        <p>Tavoitteenamme on tehdä asiakkaidemme arjesta helpompaa ja iloisempaa – ripauksella kotimaista osaamista ja hyvää mieltä.</p>`
+        
+        const yritys = `<h2>Yritysesittely</h2>
+                        <p>Oma Yritys Oy perustettiin vuonna 2020 kolmen ystävyksen yhteisestä ideasta kehittää tuotteita, jotka yhdistävät laadun ja kestävän kehityksen.  
+                        Yrityksemme toimipiste sijaitsee Jyväskylässä, mutta palvelemme asiakkaita ympäri Suomen.</p>
+                        <p>Tuotevalikoimamme koostuu pääasiassa käsintehdyistä herkuista, kuten makeisista ja leivonnaisista, sekä pienistä lahjatuotteista.  
+                        Kaikki tuotteet valmistetaan huolella valituista raaka-aineista ja yhteistyössä paikallisten tuottajien kanssa.</p>`
+
+        const yhteystiedot = `<h2>Yhteystiedot</h2>
+                        <p><strong>Oma Yritys Oy</strong><br>
+                        Käsityöläiskatu 12<br>
+                        40100 Jyväskylä<br></p>
+                        <p>Puhelin: 040 123 4567<br>
+                        Sähköposti: info@omayritysoy.fi</p>
+                        <p>Asiakaspalvelu palvelee arkisin klo 9–16.<br><br>
+                        Voit myös ottaa meihin yhteyttä sosiaalisessa mediassa tai käydä<br> 
+                        tutustumassa tuotteisiimme myymälässämme Jyväskylän keskustassa.</p>`;
+
+        async function näytäPääsivu() {
+            document.getElementById("main_alue").innerHTML = pääsivu
+        }
+
+        async function näytäYritys() {
+            document.getElementById("main_alue").innerHTML = yritys
+        }
+
+        async function näytäYhteystiedot() {
+            document.getElementById("main_alue").innerHTML = yhteystiedot
+        }
+
+        async function näytäHenkilokunta() {
+            document.getElementById("main_alue").innerHTML = "<h4>Ladataan henkilökuntaa...<h4>"
+            
+            let x = `<table>
+                        <thead>
+                            <tr>
+                                <th>Työntekijän nimi</th>
+                                <th>Tehtävä</th>
+                                <th>Puhelin</th>
+                            </tr>
+                        </thead>
+                        <tbody>`
+
+            try {
+                const response = await fetch("http://localhost:3000/api/henkilokunta")
+
+                const data = await response.json() //muutetaan json => javascript muotoon
+
+                await data.map(d => { 
+                x += `<tr>
+                            <td>${d.nimi}</td>
+                            <td>${d.tehtava}</td>
+                            <td>${d.puhelin}</td>
+                          </tr>`;
+                })
+
+                // taulukko päätetään ja renderöidään html-elementtiin
+                x += `</tbody></table>`
+                document.getElementById("main_alue").innerHTML = x 
+
+            //virhetilanteen hallinta try - catch
+            } catch (error) {
+                console.error("Error fetching data:", error);  
+            }
+        }
+            fetchData()
+
+    </script>
+</body>
+</html>

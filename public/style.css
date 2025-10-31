@@ -1,0 +1,120 @@
+/* Box-sizing kaikille elementeille */
+* {
+    box-sizing: border-box;
+}
+
+nav {
+    display: flex;
+    justify-content: center; /* keskittää painikkeet vaakasuoraan */
+    background-color: rgb(200, 190, 190);
+    padding: 10px;
+    flex-wrap: wrap; /* painikkeet siirtyvät riville tarvittaessa */
+}
+
+nav button {
+    margin: 0 10px; /* pieni väli painikkeiden väliin */
+    padding: 10px 20px;
+    width: auto; /* ei pakoteta tiettyyn leveyteen */
+    font-size: 16px;
+}
+
+#main_alue {
+    max-width: 800px;
+    margin: 20px auto; /* keskittää divin vaakasuunnassa */
+    padding: 10px;
+}
+
+table {
+    width: 100%; /* taulukko täyttää vain main_alue-divin leveyden */
+}
+
+
+/* Perusmuotoilu koko sivustolle */
+body {
+    font-family: Roboto, sans-serif;
+    font-size: 20px;
+    background-color: rgb(150, 143, 143);
+    margin: 0;
+    padding: 0;
+}
+
+/* Otsikot */
+h1, h2, h3, h4, h5, h6, p {
+    font-family: Roboto, sans-serif;
+}
+
+h1 {
+    font-size: 30px;
+}
+
+/* Header-alue */
+.header {
+    background-color: #d4d2d2;
+    padding: 50px;
+    text-align: center;
+}
+
+.header h2 {
+    font-size: 42px;
+    padding-bottom: 15px;
+    letter-spacing: 0.2em;
+}
+
+.header p {
+    font-size: 20px;
+    padding: 30px 0;
+}
+
+/* Taulukko */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: rgb(177, 176, 176);
+}
+
+tbody {
+    font-size: 20px;
+    background-color: #d4d2d2;
+}
+
+/* Margin-luokka, jos halutaan keskittää sisältöä */
+.margin {
+    margin: 50px 100px;
+}
+
+/* Navigointipainikkeet */
+button {
+    background-color: rgb(200, 190, 190);
+    color: black;
+    font-size: 16px;
+    text-align: left;
+    padding: 20px;
+    margin: 12px;
+    width: 270px;
+    display: block;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: grey;
+    color: white;
+    text-decoration: none;
+}
+
+/* Responsiivisuus alle 800px */
+@media (max-width: 800px) {
+    button {
+        width: 100%;
+    }
+}
